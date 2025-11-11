@@ -1,14 +1,15 @@
+/*
+ * Given a large integer represented as an integer array digits, increment the integer by one and return the resulting array.
+ *
+ * Expectation: Return the digits array after adding 1 to the represented number.
+ *
+ * Example:
+ * Input: digits = [1,2,3]
+ * Output: [1,2,4]
+ */
+
 #include <bits/stdc++.h>
 #include <math.h>
-
-/*
-You are given an integer array digits, where each digits[i] is the ith digit of a large integer. 
-It is ordered from most significant to least significant digit, and it will not contain any leading zero.
-Increment the large integer by one and return the resulting array of digits.
-Return the digits of the given integer after incrementing it by one.
-
-
-*/
 
 using namespace std;
 

@@ -1,9 +1,15 @@
+/*
+ * Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+ *
+ * Expectation: Return the element that appears only once.
+ *
+ * Example:
+ * Input: nums = [2,2,1]
+ * Output: 1
+ */
+
 #include <bits/stdc++.h>
 #include <math.h>
-
-/*
-You are given a non-empty array of integers nums. Every integer appears twice except for one.
-*/
 
 using namespace std;
 

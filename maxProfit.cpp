@@ -1,3 +1,13 @@
+/*
+ * Given an array prices where prices[i] is the price of a given stock on the ith day, find the maximum profit you can achieve.
+ *
+ * Expectation: Return the maximum profit from buying and selling stock (buy before sell).
+ *
+ * Example:
+ * Input: prices = [7,1,5,3,6,4]
+ * Output: 5
+ */
+
 #include <iostream>
 using namespace std;
 class Solution

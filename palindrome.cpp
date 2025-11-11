@@ -1,9 +1,15 @@
+/*
+ * Given a string s, return true if it is a palindrome, or false otherwise.
+ *
+ * Expectation: Return true if string reads the same forward and backward (ignoring non-alphanumeric characters and case).
+ *
+ * Example:
+ * Input: s = "Was it a car or a cat I saw?"
+ * Output: true
+ */
+
 #include <bits/stdc++.h>
 #include <math.h>
-
-/*
-Given a string s, return true if it is a palindrome, otherwise return false.
-*/
 
 using namespace std;
 class Solution {

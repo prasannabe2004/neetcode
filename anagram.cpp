@@ -1,32 +1,15 @@
+/*
+ * Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+ *
+ * Expectation: Return boolean indicating if strings are anagrams.
+ *
+ * Example:
+ * Input: s = "anagram", t = "nagaram"
+ * Output: true
+ */
+
 #include <bits/stdc++.h>
 #include <math.h>
-
-/*
-Valid Anagram Problem:
-Given two strings s and t, return true if the two strings are anagrams of each other,
-otherwise return false.
-
-An anagram is a word or phrase formed by rearranging the letters of another word or phrase,
-using all the original letters exactly once.
-
-Solution Approaches:
-
-1. isAnagramSorting:
-   - Sort both strings and compare if they are equal
-   - Time Complexity: O(n log n) - due to sorting
-   - Space Complexity: O(1) or O(n) depending on sort implementation
-
-2. isAnagram (Hash Map approach):
-   - Use a hash map to count character frequencies
-   - Increment count for characters in s, decrement for characters in t
-   - If all counts are 0, the strings are anagrams
-   - Time Complexity: O(n) - single pass through both strings
-   - Space Complexity: O(k) where k is the number of unique characters
-
-Example:
-Input: s = "anagram", t = "nagaram"
-Output: true (both contain the same letters with same frequencies)
-*/
 
 using namespace std;
 
