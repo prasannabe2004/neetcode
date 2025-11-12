@@ -1,4 +1,5 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 #include <math.h>
 
 /*
@@ -17,7 +18,7 @@ class Solution
 public:
      int missingNumber(vector<int> &nums)
      {
-          sort(nums.begin(), nums.end());
+          // sort(nums.begin(), nums.end());
           int n = nums.size();
           int r = n;
           for (int i = 0; i < n; i++)
