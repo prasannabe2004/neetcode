@@ -1,5 +1,6 @@
 /*
- * Given the head of a singly linked list, reverse the list recursively and return the reversed list.
+ * Given the head of a singly linked list, reverse the list recursively and
+ * return the reversed list.
  *
  * Expectation: Return the head of the reversed linked list using recursion.
  *
@@ -12,25 +13,20 @@
 using namespace std;
 
 // Definition for singly-linked list.
-struct ListNode
-{
+struct ListNode {
     int val;
-    ListNode *next;
+    ListNode* next;
     ListNode() : val(0), next(nullptr) {}
     ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
-class Solution
-{
-public:
-    ListNode *reverseList(ListNode *head)
-    {
-        if (head == NULL)
-            return NULL;
-        ListNode *newHead = head;
-        if (head->next)
-        {
+class Solution {
+   public:
+    ListNode* reverseList(ListNode* head) {
+        if (head == NULL) return NULL;
+        ListNode* newHead = head;
+        if (head->next) {
             newHead = reverseList(head->next);
             head->next->next = head;
         }
@@ -39,20 +35,18 @@ public:
     }
 };
 
-int main()
-{
-    ListNode *head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-    ListNode *h = head;
-    while (h)
-    {
+int main() {
+    ListNode* head = new ListNode(
+        1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    ListNode* h = head;
+    while (h) {
         cout << h->val << " ";
         h = h->next;
     }
     cout << endl;
     Solution s;
-    ListNode *newHead = s.reverseList(head);
-    while (newHead)
-    {
+    ListNode* newHead = s.reverseList(head);
+    while (newHead) {
         cout << newHead->val << " ";
         newHead = newHead->next;
     }

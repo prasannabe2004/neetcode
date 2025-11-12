@@ -1,5 +1,6 @@
 /*
- * Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+ * Given an array of integers nums and an integer target, return indices of the
+ * two numbers such that they add up to target.
  *
  * Expectation: Return array of two indices where nums[i] + nums[j] = target.
  *
@@ -9,26 +10,20 @@
  */
 
 #include <iostream>
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
-class Solution
-{
-public:
-    vector<int> twoSum(vector<int> &nums, int target)
-    {
+class Solution {
+   public:
+    vector<int> twoSum(vector<int>& nums, int target) {
         unordered_map<int, int> m;
-        for (int i = 0; i < sizeof(nums); i++)
-        {
+        for (int i = 0; i < sizeof(nums); i++) {
             int complement = target - nums[i];
-            if (m.find(complement) != m.end())
-            {
+            if (m.find(complement) != m.end()) {
                 vector<int> result = {m[complement], i};
                 return result;
-            }
-            else
-            {
+            } else {
                 m[nums[i]] = i;
             }
         }
@@ -36,14 +31,12 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> nums = {2, 7, 11, 15};
     int target = 9;
     vector<int> result = s.twoSum(nums, target);
-    for (int i = 0; i < result.size(); i++)
-    {
+    for (int i = 0; i < result.size(); i++) {
         cout << result[i] << " ";
     }
     cout << endl;

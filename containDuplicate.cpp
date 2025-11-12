@@ -1,5 +1,6 @@
 /*
- * Given an integer array nums, return true if any value appears at least twice in the array.
+ * Given an integer array nums, return true if any value appears at least twice
+ * in the array.
  *
  * Expectation: Return true if there are duplicates, false otherwise.
  *
@@ -13,16 +14,12 @@
 
 using namespace std;
 
-class Solution
-{
-public:
-    bool hasDuplicate(vector<int> &nums)
-    {
+class Solution {
+   public:
+    bool hasDuplicate(vector<int>& nums) {
         unordered_set<int> seen;
-        for (int n : nums)
-        {
-            if (seen.count(n))
-            {
+        for (int n : nums) {
+            if (seen.count(n)) {
                 return true;
             }
             seen.insert(n);
@@ -31,8 +28,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution s;
     vector<int> nums = {1, 2, 3, 1};
     cout << s.hasDuplicate(nums) << endl;

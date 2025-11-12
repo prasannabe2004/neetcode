@@ -1,7 +1,8 @@
 /*
  * Given a string s, return true if it is a palindrome, or false otherwise.
  *
- * Expectation: Return true if string reads the same forward and backward (ignoring non-alphanumeric characters and case).
+ * Expectation: Return true if string reads the same forward and backward
+ * (ignoring non-alphanumeric characters and case).
  *
  * Example:
  * Input: s = "A man, a plan, a canal: Panama"
@@ -11,27 +12,21 @@
 #include <iostream>
 using namespace std;
 
-class Solution
-{
-public:
-    bool isPalindrome(string s)
-    {
+class Solution {
+   public:
+    bool isPalindrome(string s) {
         int left = 0;
         int right = s.length() - 1;
-        while (left < right)
-        {
-            if (!isalnum(s[left]))
-            {
+        while (left < right) {
+            if (!isalnum(s[left])) {
                 left++;
                 continue;
             }
-            if (!isalnum(s[right]))
-            {
+            if (!isalnum(s[right])) {
                 right--;
                 continue;
             }
-            if (tolower(s[left]) != tolower(s[right]))
-            {
+            if (tolower(s[left]) != tolower(s[right])) {
                 return false;
             }
             left++;
@@ -41,8 +36,7 @@ public:
     }
 };
 
-int main()
-{
+int main() {
     Solution solution;
     string s = "A man, a plan, a canal: Panama";
     cout << solution.isPalindrome(s) << endl;
