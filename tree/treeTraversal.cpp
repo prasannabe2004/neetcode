@@ -3,7 +3,15 @@
 using namespace std;
 
 /*
-
+Tree traversal is a process of visiting each node in a tree data structure
+exactly once. There are three ways to traverse a tree:
+1. Inorder Traversal
+2. Preorder Traversal
+3. Postorder Traversal
+4. Level Order Traversal
+5. Height of a tree
+6. Level Order Traversal using queue
+7. Level Order Traversal using recursion
 */
 class TreeNode {
    public:
