@@ -31,12 +31,51 @@ class Solution {
         }
         return -1;
     }
+    int leftMostSearch(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+        int mid = 0;
+        int result = -1;
+        while (left <= right) {
+            mid = left + ((right - left) / 2);
+            if (nums[mid] == target) {
+                result = mid;
+                right = mid - 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return result;
+    }
+    int rightMostSearch(vector<int>& nums, int target) {
+        int left = 0;
+        int right = nums.size() - 1;
+        int mid = 0;
+        int result = -1;
+        while (left <= right) {
+            mid = left + ((right - left) / 2);
+            if (nums[mid] == target) {
+                result = mid;
+                left = mid + 1;
+            } else if (nums[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return result;
+    }
 };
 
 int main() {
     Solution s;
-    vector<int> nums = {-1, 0, 3, 5, 9, 12};
-    int target = 9;
+    vector<int> nums = {-1, 0, 3, 3, 3, 3, 3, 3, 3, 3, 5, 9, 12};
+    int target = 3;
     cout << s.search(nums, target) << endl;
+    cout << s.leftMostSearch(nums, target) << endl;
+    cout << s.rightMostSearch(nums, target) << endl;
+
     return 0;
 }
