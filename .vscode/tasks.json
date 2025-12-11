@@ -4,13 +4,7 @@
         {
             "label": "compile",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "-std=c++17",
-                "-o",
-                "${fileBasenameNoExtension}",
-                "${file}"
-            ],
+            "command": "if [[ \"${fileExtname}\" == \".c\" ]]; then gcc -o ${fileBasenameNoExtension} ${file}; else g++ -std=c++17 -o ${fileBasenameNoExtension} ${file}; fi",
             "group": {
                 "kind": "build",
                 "isDefault": false
@@ -19,7 +13,7 @@
         {
             "label": "compile and run",
             "type": "shell",
-            "command": "g++ -std=c++17 -o ${fileBasenameNoExtension}.out ${file} && ./${fileBasenameNoExtension}.out",
+            "command": "if [[ \"${fileExtname}\" == \".c\" ]]; then gcc -o ${fileBasenameNoExtension}.out ${file}; else g++ -std=c++17 -o ${fileBasenameNoExtension}.out ${file}; fi && ./${fileBasenameNoExtension}.out",
             "group": {
                 "kind": "build",
                 "isDefault": true
