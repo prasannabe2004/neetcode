@@ -2,8 +2,13 @@
 
 #define NUM 10
 
+void fun(int *x) {
+    *x = 11;
+}
 int main() {
-    printf("Hello World %d\n", NUM);
-    printf("Update from iximiuz.com\n");
+    int x = 10;
+    int *p = &x;
+    fun(p);
+    printf("%d\n", x);
     return 0;
 }
