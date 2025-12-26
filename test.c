@@ -1,14 +1,8 @@
 #include <stdio.h>
 
-#define NUM 10
-
-void fun(int *x) {
-    *x = 11;
-}
 int main() {
-    int x = 10;
-    int *p = &x;
-    fun(p);
-    printf("%d\n", x);
+    int arr[5] = {1, 2, 3, 4, 5};
+    printf("%lu\n", sizeof(arr) / sizeof(arr[0]));
+    printf("%lu\n", sizeof(&arr) / sizeof(arr[0]));
     return 0;
 }
