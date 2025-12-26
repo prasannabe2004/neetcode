@@ -6,9 +6,14 @@ using namespace std;
 
 class Solution {
    public:
+    void swapElements(int* a, int* b) {
+        int temp = *a;
+        *a = *b;
+        *b = temp;
+    }
     void reverseArray(vector<int>& a, int start, int end) {
         while (start <= end) {
-            swap(a[start], a[end]);
+            swapElements(&a[start], &a[end]);
             start++;
             end--;
         }
