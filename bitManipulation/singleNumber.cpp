@@ -9,8 +9,9 @@
  * Output: 1
  */
 
-#include <bits/stdc++.h>
 #include <math.h>
+
+#include <iostream>
 
 using namespace std;
 
