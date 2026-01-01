@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 /*
 Function to encode and decide a vector of strings into a single string
