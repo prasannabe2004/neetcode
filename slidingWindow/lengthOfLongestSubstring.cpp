@@ -13,6 +13,34 @@ characters. Example: Input: s = "abcabcbb" Output: 3 Explanation: The answer is
 
 class Solution {
    public:
+    /*
+    Brute force approach
+     Time Complexity: O(N^2)
+     Space Complexity: O(min(M,N)) where M is the size of charset and N is the
+     size of string
+     */
+    int lengthOfLongestSubstringBruteForce(string s) {
+        int n = s.size();
+        int res = 0;
+
+        for (int i = 0; i < n; i++) {
+            unordered_set<char> charSet;
+            for (int j = i; j < n; j++) {
+                if (charSet.find(s[j]) != charSet.end()) {
+                    break;
+                }
+                charSet.insert(s[j]);
+            }
+            res = max(res, static_cast<int>(charSet.size()));
+        }
+        return res;
+    }
+    /*
+    Sliding window approach
+    Time Complexity: O(N)
+    Space Complexity: O(min(M,N)) where M is the size of charset and N is the
+    size of string
+    */
     int lengthOfLongestSubstring(string s) {
         unordered_set<char> charSet;
         int l = 0;
