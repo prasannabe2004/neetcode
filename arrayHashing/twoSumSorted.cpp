@@ -34,7 +34,8 @@ class Solution {
         }
         return {-1, -1};  // Return an invalid pair if no solution is found
     }
-    /* Implementation of two-sum using two-pointer technique
+    /* 
+     Implementation of two-sum using two-pointer technique
      Time Complexity: O(n)
      Space Complexity: O(1)
      */

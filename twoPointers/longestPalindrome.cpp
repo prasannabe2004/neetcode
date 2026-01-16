@@ -49,6 +49,7 @@ class Solution {
                 if (len > resLen) {
                     resIdx = left;
                     resLen = len;
+                    res = s.substr(resIdx, resLen);
                 }
                 left--;
                 right++;
@@ -62,12 +63,14 @@ class Solution {
                 if (len > resLen) {
                     resIdx = left;
                     resLen = len;
+                    res = s.substr(resIdx, resLen);
                 }
                 left--;
                 right++;
             }
         }
-        return s.substr(resIdx, resLen);
+        // return s.substr(resIdx, resLen);
+        return res;
     }
 };
 
