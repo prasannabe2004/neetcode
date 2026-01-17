@@ -23,8 +23,9 @@ Output: []
 class Solution {
    public:
     /*
+    Hashmap Approach
     Time Complexity: O(n^2)
-     Space Complexity: O(n)
+    Space Complexity: O(n)
     */
     vector<vector<int>> threeSumUsingHashmap(vector<int>& nums) {
         vector<vector<int>> res;
@@ -46,8 +47,9 @@ class Solution {
         return res;
     }
     /*
-     Time Complexity: O(n^3)
-     Space Complexity: O(1)
+    Brute Force Approach
+    Time Complexity: O(n^3)
+    Space Complexity: O(1)
     */
     vector<vector<int>> threeSumBruteForce(vector<int>& nums) {
         vector<vector<int>> res;
@@ -70,6 +72,7 @@ class Solution {
         return res;
     }
     /*
+    Two Pointers Approach
     Time Complexity: O(n^2)
     Space Complexity: O(1)
     */
