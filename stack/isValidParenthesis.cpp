@@ -1,3 +1,8 @@
+#include <iostream>
+#include <stack>
+#include <unordered_map>
+using namespace std;
+
 /*
  * Given a string s containing just the characters '(', ')', '{', '}', '[' and
  * ']', determine if the input string is valid.
@@ -9,25 +14,24 @@
  * Output: true
  */
 
-#include <iostream>
-#include <stack>
-#include <unordered_map>
-using namespace std;
-
 class Solution {
    public:
     bool isValid(string s) {
         stack<char> myStack;
         unordered_map<char, char> m = {{'{', '}'}, {'[', ']'}, {'(', ')'}};
 
-        for (auto ch : s) {
-            if (m.count(ch)) {
-                myStack.push(ch);
+        for (char c : s) {
+            if (m.find(c) != m.end()) {
+                myStack.push(c);
             } else {
-                if (myStack.empty() || m[myStack.top()] != ch) {
+                if (myStack.empty()) {
                     return false;
                 }
+                char top = myStack.top();
                 myStack.pop();
+                if (m[top] != c) {
+                    return false;
+                }
             }
         }
         return myStack.empty();
@@ -37,6 +41,8 @@ class Solution {
 int main() {
     Solution s;
     string str = "()[]";
+    cout << s.isValid(str) << endl;
+    str = "([)]";
     cout << s.isValid(str) << endl;
     return 0;
 }
