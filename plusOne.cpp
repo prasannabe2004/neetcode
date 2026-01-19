@@ -34,7 +34,7 @@ class Solution {
 };
 
 int main() {
-    vector<int> nums = {1, 2, 9};
+    vector<int> nums = {1, 2, 9, 9};
     Solution s;
     vector<int> r = s.plusOne(nums);
     for (auto i : r) cout << i << " ";

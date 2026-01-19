@@ -39,6 +39,6 @@ class Solution {
 
 int main() {
     Solution s;
-    cout << s.isHappy(101) << endl;
+    cout << s.isHappy(19) << endl;
     return 0;
 }
