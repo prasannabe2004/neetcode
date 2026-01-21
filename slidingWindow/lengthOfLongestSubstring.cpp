@@ -50,19 +50,12 @@ class Solution {
         int maxLength = 0;
         int left = 0;
         for (int right = 0; right < s.size(); right++) {
-            cout << "Processing character: " << s[right] << endl;
-            for (auto val : index) {
-                cout << val << " ";
-            }
-            cout << endl;
             int i = s[right] - 'a';
             if (index[i] != -1) {
                 left = max(index[i] + 1, left);
             }
             index[i] = right;
             maxLength = max(maxLength, right - left + 1);
-            cout << "Left: " << left << ", Right: " << right
-                 << ", Current Max Length: " << maxLength << endl;
         }
         return maxLength;
     }
