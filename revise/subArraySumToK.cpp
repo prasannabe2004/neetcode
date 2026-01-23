@@ -1,1 +1,1 @@
-/Users/ppadmoh/git/neetcode/arrayHashing/subArraySumToK.cpp
+../arrayHashing/subArraySumToK.cpp
