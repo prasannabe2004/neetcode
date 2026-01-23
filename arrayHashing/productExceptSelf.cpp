@@ -24,7 +24,7 @@ class Solution {
     Time Complexity: O(n)
     Space Complexity: O(n)
     */
-    vector<int> productExceptSelf1(vector<int>& nums) {
+    vector<int> productExceptSelf(vector<int>& nums) {
         int n = nums.size();
         vector<int> output(n);
         vector<int> prefix(n);
@@ -33,11 +33,18 @@ class Solution {
         for (int i = 1; i < n; i++) {
             prefix[i] = prefix[i - 1] * nums[i - 1];
         }
-
+        for (auto val : prefix) {
+            cout << val << " ";
+        }
+        cout << endl;
         postfix[n - 1] = 1;
         for (int i = n - 2; i >= 0; i--) {
             postfix[i] = postfix[i + 1] * nums[i + 1];
         }
+        for (auto val : postfix) {
+            cout << val << " ";
+        }
+        cout << endl;
         for (int i = 0; i < nums.size(); i++) {
             output[i] = prefix[i] * postfix[i];
         }
@@ -84,7 +91,7 @@ class Solution {
     Time Complexity: O(n)
     Space Complexity: O(1)
     */
-    vector<int> productExceptSelf(vector<int>& nums) {
+    vector<int> productExceptSelf4(vector<int>& nums) {
         int n = nums.size();
         vector<int> output(n);
         int product = 1;
