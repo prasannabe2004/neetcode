@@ -10,10 +10,16 @@ Find the longest consecutive elements sequence.
 Example 1:
 Input: nums = [100,4,200,1,3,2]
 Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. 
+Therefore its length is 4.
 */
 
 class Solution {
    public:
+   /*
+    Time complexity : O(n)
+    Space complexity : O(n)
+   */
     int longestConsecutive(vector<int>& nums) {
         int max = 0;
         unordered_set<int> set;
@@ -31,6 +37,10 @@ class Solution {
         }
         return max;
     }
+    /*
+    Time complexity : O(nlogn)
+    Space complexity : O(1)
+    */
     int longestConsecutiveSorting(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         int max = 0;

@@ -31,6 +31,10 @@ returned k (hence they are underscores).
 
 class Solution {
    public:
+   /*
+   Time Complexity: O(n)
+   Space Complexity: O(1)
+   */
     int removeElement(vector<int>& nums, int val) {
         int k = 0;
         for (int i = 0; i < nums.size(); i++) {

@@ -1,3 +1,8 @@
+#include <bits/stdc++.h>
+#include <math.h>
+
+using namespace std;
+
 /*
  * Given a large integer represented as an integer array digits, increment the
  * integer by one and return the resulting array.
@@ -9,14 +14,13 @@
  * Input: digits = [1,2,3]
  * Output: [1,2,4]
  */
-
-#include <bits/stdc++.h>
-#include <math.h>
-
-using namespace std;
-
+ 
 class Solution {
    public:
+   /*
+   Time Complexity: O(n)
+   Space Complexity: O(1)
+   */
     vector<int> plusOne(vector<int>& digits) {
         vector<int> result;
         int carry = 1;

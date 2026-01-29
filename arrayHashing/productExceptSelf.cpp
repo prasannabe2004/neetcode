@@ -62,8 +62,17 @@ class Solution {
         for (int i = 1; i < n; i++) {
             output[i] = output[i - 1] * nums[i - 1];
         }
+        for(auto val : output) {
+            cout << val << " ";
+        }
+        cout << endl;
         int postfix = 1;
         for (int i = n - 1; i >= 0; i--) {
+            cout << "postfix: " << postfix << endl;
+            for(auto val : output) {
+                cout << val << " ";
+            }
+            cout << endl;
             output[i] = output[i] * postfix;
             postfix = postfix * nums[i];
         }
@@ -90,6 +99,10 @@ class Solution {
     Using division
     Time Complexity: O(n)
     Space Complexity: O(1)
+    Exception: When there are zeros in the array
+    Exception: When there are more than one zero in the array
+    Exception: When the array size is 1
+    Exception: When the array size is 0
     */
     vector<int> productExceptSelf4(vector<int>& nums) {
         int n = nums.size();
@@ -107,8 +120,8 @@ class Solution {
 
 int main() {
     Solution s;
-    vector<int> nums = {1, 2, 3, 4};
-    vector<int> result = s.productExceptSelf(nums);
+    vector<int> nums = {1, 2, 3, 4, 5};
+    vector<int> result = s.productExceptSelf2(nums);
     for (int i = 0; i < result.size(); i++) {
         cout << result[i] << " ";
     }

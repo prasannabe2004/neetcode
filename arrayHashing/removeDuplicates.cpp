@@ -23,6 +23,10 @@ Output: 2, nums = [1,2,_]
 */
 class Solution {
    public:
+   /*
+   Time Complexity: O(n)
+   Space Complexity: O(1)
+   */
     int removeDuplicates(vector<int>& nums) {
         int left = 1;
 

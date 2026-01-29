@@ -13,9 +13,19 @@ n times. For example, the array nums = [0,1,2,4,5,6,7] might become:
 Notice that rotating an array [a[0], a[1], a[2], ..., a[n-1]] 1 time results in
 the array [a[n-1], a[0], a[1], a[2], ..., a[n-2]]. Given the sorted rotated
 array nums of unique elements, return the minimum element of this array. You
-must write an algorithm that runs in O(log n) time. Example 1: Input: nums =
-[3,4,5,1,2] Output: 1 Example 2: Input: nums = [4,5,6,7,0,1,2] Output: 0 Example
-3: Input: nums = [11,13,15,17] Output: 11
+must write an algorithm that runs in O(log n) time. 
+
+Example 1: 
+Input: nums = [3,4,5,1,2] 
+Output: 1 
+
+Example 2: 
+Input: nums = [4,5,6,7,0,1,2] 
+Output: 0 
+
+Example 3: 
+Input: nums = [11,13,15,17] 
+Output: 11
 */
 
 class Solution {
@@ -39,6 +49,78 @@ class Solution {
         }
         return nums[left];
     }
+    /*
+    Binary Search approach 2
+    Time Complexity: O(log n)
+    Space Complexity: O(1)
+    */
+    int findMin2(vector<int>& nums) {
+        int left = 0;
+        int right = nums.size() - 1;
+        int minValue = nums[0];
+        while (left <= right) {
+            if (nums[left] < nums[right]) {
+                minValue = min(minValue, nums[left]);
+                break;
+            }
+            int mid = left + (right - left) / 2;
+            minValue = min(minValue, nums[mid]);
+            if (nums[mid] >= nums[left]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return minValue;
+    }
+    /*
+    Brute Force approach
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    */
+    int findMinBruteForce(vector<int>& nums) {
+        int min = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i] < min) {
+                min = nums[i];
+            }
+        }
+        return min;
+    }
+    /*
+    Using STL
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    */
+    int findMinUsingSTL(vector<int>& nums) {
+        return *min_element(nums.begin(), nums.end());
+    }
+    /*
+    Sorting approach
+    Time Complexity: O(n log n)
+    Space Complexity: O(1)
+    */
+    int findMinUsingSort(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        return nums[0];
+    }
+    /*
+    Recursive approach
+    Time Complexity: O(log n)
+    Space Complexity: O(log n) due to recursion stack
+    */
+    int findMinUsingRecursion(vector<int>& nums, int left, int right) {
+
+        if (left == right) {
+            return nums[left];
+        }
+        int mid = left + (right - left) / 2;
+        if (nums[mid] > nums[right]) {
+            return findMinUsingRecursion(nums, mid + 1, right);
+        } else {
+            return findMinUsingRecursion(nums, left, mid);
+        }
+    }
 };
 
 int main() {
@@ -51,6 +133,16 @@ int main() {
 
     vector<int> nums3 = {11, 13, 15, 17};
     cout << "Minimum in [11,13,15,17]: " << s.findMin(nums3) << endl;
+
+    vector<int> nums4 = {3, 4, 5, 1, 2};
+    cout << "Minimum in [3,4,5,1,2]: " << s.findMin2(nums4) << endl;
+
+    vector<int> nums5 = {4, 5, 6, 7, 0, 1, 2};
+    cout << "Minimum in [4,5,6,7,0,1,2]: " << s.findMin2(nums5) << endl;
+
+    vector<int> nums6 = {11, 13, 15, 17};
+    cout << "Minimum in [11,13,15,17]: " << s.findMin2(nums6) << endl;
+
 
     return 0;
 }
