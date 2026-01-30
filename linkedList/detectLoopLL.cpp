@@ -22,6 +22,41 @@ struct ListNode {
 
 class Solution {
    public:
+   ListNode *startOfCycle(ListNode *head) {
+        if (head == NULL || head->next == NULL) {
+            return NULL; // No cycle possible in an empty list or a single-node list without a self-loop
+        }
+
+        ListNode *slow = head;
+        ListNode *fast = head;
+
+        // Phase 1: Detect the meeting point (cycle detection)
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast) {
+                // Cycle detected, break to start Phase 2
+                break;
+            }
+        }
+
+        // If the loop finished without the pointers meeting, there is no cycle
+        if (fast == NULL || fast->next == NULL) {
+            return NULL;
+        }
+
+        // Phase 2: Find the starting node of the cycle
+        ListNode *slow2 = head; // Reset one pointer to the head
+
+        while (slow != slow2) {
+            slow = slow->next;
+            slow2 = slow2->next;
+        }
+
+        // Both pointers now point to the start of the cycle
+        return slow; 
+    }
     bool hasCycle(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
@@ -56,6 +91,9 @@ int main() {
     cout << "Test Case 1: List with cycle [3,2,0,-4], pos=1" << endl;
     cout << "Has Cycle: " << (solution.hasCycle(node1) ? "True" : "False")
          << endl;
+    cout << "Start of Cycle: "
+         << (solution.startOfCycle(node1) ? to_string(solution.startOfCycle(node1)->val) : "No cycle")
+         << endl;
     cout << endl;
 
     // Test Case 2: Linked list without cycle
@@ -68,6 +106,9 @@ int main() {
     cout << "Test Case 2: List without cycle [1,2,3,4]" << endl;
     cout << "Has Cycle: " << (solution.hasCycle(list2) ? "True" : "False")
          << endl;
+    cout << "Start of Cycle: "
+         << (solution.startOfCycle(list2) ? to_string(solution.startOfCycle(list2)->val) : "No cycle")
+         << endl;
     cout << endl;
 
     // Test Case 3: Single node with cycle
@@ -77,11 +118,17 @@ int main() {
     cout << "Test Case 3: Single node with cycle [1], pos=0" << endl;
     cout << "Has Cycle: " << (solution.hasCycle(list3) ? "True" : "False")
          << endl;
+    cout << "Start of Cycle: "
+         << (solution.startOfCycle(list3) ? to_string(solution.startOfCycle(list3)->val) : "No cycle")
+         << endl;
     cout << endl;
 
     // Test Case 4: Empty list
     cout << "Test Case 4: Empty list []" << endl;
     cout << "Has Cycle: " << (solution.hasCycle(nullptr) ? "True" : "False")
+         << endl;
+    cout << "Start of Cycle: "
+         << (solution.startOfCycle(nullptr) ? to_string(solution.startOfCycle(nullptr)->val) : "No cycle")
          << endl;
     cout << endl;
 
@@ -93,6 +140,9 @@ int main() {
 
     cout << "Test Case 5: Two nodes with cycle [1,2], pos=0" << endl;
     cout << "Has Cycle: " << (solution.hasCycle(list5a) ? "True" : "False")
+         << endl;
+    cout << "Start of Cycle: "
+         << (solution.startOfCycle(list5a) ? to_string(solution.startOfCycle(list5a)->val) : "No cycle")
          << endl;
     cout << endl;
 
