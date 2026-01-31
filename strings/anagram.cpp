@@ -1,3 +1,10 @@
+#include <math.h>
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
 /*
  * Given two strings s and t, return true if t is an anagram of s, and false
  * otherwise.
@@ -8,11 +15,6 @@
  * Input: s = "anagram", t = "nagaram"
  * Output: true
  */
-
-#include <bits/stdc++.h>
-#include <math.h>
-
-using namespace std;
 
 class Solution {
    public:
