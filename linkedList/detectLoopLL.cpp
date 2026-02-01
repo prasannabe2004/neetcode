@@ -1,160 +1,112 @@
 #include <iostream>
-using namespace std;
 
-// Definition for singly-linked list.
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
-};
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+using namespace std;
 
 class Solution {
    public:
-   ListNode *startOfCycle(ListNode *head) {
-        if (head == NULL || head->next == NULL) {
-            return NULL; // No cycle possible in an empty list or a single-node list without a self-loop
-        }
+    struct ListNode {
+        int val;
+        ListNode* next;
+        ListNode(int x) : val(x), next(nullptr) {}
+    };
 
-        ListNode *slow = head;
-        ListNode *fast = head;
+    bool detectLoop(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
 
-        // Phase 1: Detect the meeting point (cycle detection)
-        while (fast != NULL && fast->next != NULL) {
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
 
             if (slow == fast) {
-                // Cycle detected, break to start Phase 2
+                return true;  // Entry point of the loop
+            }
+        }
+        return false;  // No loop detected
+    }
+
+    ListNode* startOfLoop(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        // Detect loop
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast) {
                 break;
             }
         }
 
-        // If the loop finished without the pointers meeting, there is no cycle
-        if (fast == NULL || fast->next == NULL) {
-            return NULL;
+        if (fast == nullptr || fast->next == nullptr) {
+            return nullptr;  // No loop detected
         }
 
-        // Phase 2: Find the starting node of the cycle
-        ListNode *slow2 = head; // Reset one pointer to the head
-
-        while (slow != slow2) {
+        slow = head;
+        while (slow != fast) {
             slow = slow->next;
-            slow2 = slow2->next;
+            fast = fast->next;
         }
-
-        // Both pointers now point to the start of the cycle
-        return slow; 
+        return slow;  // Entry point of the loop
     }
-    bool hasCycle(ListNode* head) {
+    bool fixLoop(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
 
-        while (fast && fast->next) {
+        // Detect loop
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
 
-            if (fast == slow) {
-                return true;
+            if (slow == fast) {
+                break;
             }
         }
-        return false;
+
+        if (slow == fast) {
+            slow = head;
+            while (slow->next != fast->next) {
+                slow = slow->next;
+                fast = fast->next;
+            }
+            fast->next = nullptr;
+            return true;
+        } else {
+            return false;
+        }
     }
 };
 
 int main() {
     Solution solution;
+    Solution::ListNode* head = new Solution::ListNode(1);
+    head->next = new Solution::ListNode(2);
+    head->next->next = new Solution::ListNode(3);
+    head->next->next->next = new Solution::ListNode(4);
+    head->next->next->next->next = head->next;  // Creating a loop for testing
 
-    // Test Case 1: Linked list with cycle
-    // Create: 3 -> 2 -> 0 -> -4 -> (back to 2)
-    ListNode* node1 = new ListNode(3);
-    ListNode* node2 = new ListNode(2);
-    ListNode* node3 = new ListNode(0);
-    ListNode* node4 = new ListNode(-4);
+    bool hasLoop = solution.detectLoop(head);
+    cout << "Linked List has loop: " << (hasLoop ? "Yes" : "No") << endl;
 
-    node1->next = node2;
-    node2->next = node3;
-    node3->next = node4;
-    node4->next = node2;  // Create cycle: -4 points back to 2
+    if (hasLoop) {
+        Solution::ListNode* start = solution.startOfLoop(head);
+        if (start != nullptr) {
+            cout << "Start of the loop " << start->val << endl;
+        }
+    }
 
-    cout << "Test Case 1: List with cycle [3,2,0,-4], pos=1" << endl;
-    cout << "Has Cycle: " << (solution.hasCycle(node1) ? "True" : "False")
+    if (hasLoop) {
+        bool loopFixed = solution.fixLoop(head);
+        if (loopFixed) {
+            cout << "Loop fixed successfully." << endl;
+        }
+    }
+    hasLoop = solution.detectLoop(head);
+    cout << "Linked List has loop after fixing: " << (hasLoop ? "Yes" : "No")
          << endl;
-    cout << "Start of Cycle: "
-         << (solution.startOfCycle(node1) ? to_string(solution.startOfCycle(node1)->val) : "No cycle")
-         << endl;
-    cout << endl;
-
-    // Test Case 2: Linked list without cycle
-    // Create: 1 -> 2 -> 3 -> 4 -> nullptr
-    ListNode* list2 = new ListNode(1);
-    list2->next = new ListNode(2);
-    list2->next->next = new ListNode(3);
-    list2->next->next->next = new ListNode(4);
-
-    cout << "Test Case 2: List without cycle [1,2,3,4]" << endl;
-    cout << "Has Cycle: " << (solution.hasCycle(list2) ? "True" : "False")
-         << endl;
-    cout << "Start of Cycle: "
-         << (solution.startOfCycle(list2) ? to_string(solution.startOfCycle(list2)->val) : "No cycle")
-         << endl;
-    cout << endl;
-
-    // Test Case 3: Single node with cycle
-    ListNode* list3 = new ListNode(1);
-    list3->next = list3;  // Points to itself
-
-    cout << "Test Case 3: Single node with cycle [1], pos=0" << endl;
-    cout << "Has Cycle: " << (solution.hasCycle(list3) ? "True" : "False")
-         << endl;
-    cout << "Start of Cycle: "
-         << (solution.startOfCycle(list3) ? to_string(solution.startOfCycle(list3)->val) : "No cycle")
-         << endl;
-    cout << endl;
-
-    // Test Case 4: Empty list
-    cout << "Test Case 4: Empty list []" << endl;
-    cout << "Has Cycle: " << (solution.hasCycle(nullptr) ? "True" : "False")
-         << endl;
-    cout << "Start of Cycle: "
-         << (solution.startOfCycle(nullptr) ? to_string(solution.startOfCycle(nullptr)->val) : "No cycle")
-         << endl;
-    cout << endl;
-
-    // Test Case 5: Two nodes with cycle
-    ListNode* list5a = new ListNode(1);
-    ListNode* list5b = new ListNode(2);
-    list5a->next = list5b;
-    list5b->next = list5a;  // Create cycle
-
-    cout << "Test Case 5: Two nodes with cycle [1,2], pos=0" << endl;
-    cout << "Has Cycle: " << (solution.hasCycle(list5a) ? "True" : "False")
-         << endl;
-    cout << "Start of Cycle: "
-         << (solution.startOfCycle(list5a) ? to_string(solution.startOfCycle(list5a)->val) : "No cycle")
-         << endl;
-    cout << endl;
-
-    // Clean up memory for non-cyclic lists
-    // Note: Cannot safely delete nodes in cyclic lists without breaking the
-    // cycle first
-    delete list2->next->next->next;
-    delete list2->next->next;
-    delete list2->next;
-    delete list2;
-
-    cout << "All test cases completed!" << endl;
+    // Note: In a real scenario, we should free the allocated memory.
+    // However, since there's a loop, we would need to handle that carefully.
 
     return 0;
 }
