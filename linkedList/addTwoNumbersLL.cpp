@@ -1,6 +1,16 @@
 #include <iostream>
 using namespace std;
 
+/*
+Add Two Numbers
+https://leetcode.com/problems/add-two-numbers
+
+You are given two non-empty linked lists representing two non-negative
+integers. The digits are stored in reverse order, and each of their
+nodes contains a single digit. Add the two numbers and return the sum
+as a linked list.
+*/
+
 // Definition for singly-linked list.
 struct ListNode {
     int val;
@@ -9,24 +19,15 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
 
 class Solution {
    public:
     /*
     Iterative way
-    Time Complexity: O(max(n, m)) where n and m are the lengths of the two
-    linked lists. Space Complexity: O(max(n, m)) due to the new linked list
-    created to store the result.
+    Time Complexity: O(max(n, m)) where n and m are the lengths of the
+    two linked lists. Space Complexity: O(max(n, m)) due to the new
+    linked list created to store the result.
+    Space Complexity: O(1)
     */
     ListNode* addTwoNumbers1(ListNode* l1, ListNode* l2) {
         ListNode* dummy = new ListNode(0);
@@ -47,6 +48,12 @@ class Solution {
         }
         return dummy->next;
     }
+    /*
+    Recursive way
+    Time Complexity: O(max(n, m)) where n and m are the lengths of the two
+    linked lists. Space Complexity: O(max(n, m)) due to the recursive call
+    stack.
+    */
     ListNode* add(ListNode* l1, ListNode* l2, int carry) {
         if (!l1 && !l2 && carry == 0) {
             return nullptr;
@@ -70,12 +77,7 @@ class Solution {
 
         return new ListNode(nodeValue, nextNode);
     }
-    /*
-    Recursive way
-    Time Complexity: O(max(n, m)) where n and m are the lengths of the two
-    linked lists. Space Complexity: O(max(n, m)) due to the recursive call
-    stack.
-    */
+
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         return add(l1, l2, 0);
     }

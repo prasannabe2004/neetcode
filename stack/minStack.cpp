@@ -33,8 +33,13 @@ class MinStack {
     MinStack() {}
 
     void push(int val) {
+        int v;
         mainStack.push(val);
-        int v = min(val, minStack.empty() ? val : minStack.top());
+        if (minStack.empty())
+            v = val;
+        else
+            v = minStack.top();
+        v = min(v, val);
         minStack.push(v);
     }
     void pop() {

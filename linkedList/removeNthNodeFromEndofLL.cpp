@@ -50,6 +50,27 @@ class Solution {
         delete tmp;
         return dummy->next;
     }
+    /*
+    using length of the list
+    Time Complexity: O(n)
+    Space Complexity: O(1)
+    */
+    ListNode* removeNthFromEnd2(ListNode* head, int n) {
+        int k = 0;
+        ListNode* curr = head;
+        while (curr) {
+            k++;
+            curr = curr->next;
+        }
+        curr = head;
+        for (int i = 1; i < k - n; i++) {
+            curr = curr->next;
+        }
+        ListNode* tmp = curr->next;
+        curr->next = curr->next->next;
+        delete tmp;
+        return head;
+    }
 };
 
 int main() {
@@ -59,11 +80,32 @@ int main() {
     head->next->next = new ListNode(3);
     head->next->next->next = new ListNode(4);
     head->next->next->next->next = new ListNode(5);
+    head->next->next->next->next->next = new ListNode(6);
+    head->next->next->next->next->next->next = new ListNode(7);
+    head->next->next->next->next->next->next->next = new ListNode(8);
+    head->next->next->next->next->next->next->next->next = new ListNode(9);
+
+    cout << "Original List: ";
+    ListNode* current = head;
+    while (current != nullptr) {
+        cout << current->val << " ";
+        current = current->next;
+    }
+    cout << endl;
 
     int n = 2;
     ListNode* modifiedHead = s.removeNthFromEnd(head, n);
     cout << "Modified List after removing " << n << "th node from end: ";
-    ListNode* current = modifiedHead;
+    current = modifiedHead;
+    while (current != nullptr) {
+        cout << current->val << " ";
+        current = current->next;
+    }
+    cout << endl;
+
+    modifiedHead = s.removeNthFromEnd2(head, n);
+    cout << "Modified List after removing " << n << "th node from end: ";
+    current = modifiedHead;
     while (current != nullptr) {
         cout << current->val << " ";
         current = current->next;

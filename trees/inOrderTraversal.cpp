@@ -25,7 +25,7 @@ class TreeNode {
         vector<int> result;
         TreeNode* curr = root;
 
-        while(curr != nullptr || !st.empty()) {
+        while (curr != nullptr || !st.empty()) {
             while (curr != nullptr) {
                 st.push(curr);
                 curr = curr->left;
@@ -36,6 +36,25 @@ class TreeNode {
             curr = curr->right;
         }
         return result;
+    }
+
+    void dfs(TreeNode* root, vector<int>& r) {
+        if (root == nullptr) {
+            return;
+        }
+        dfs(root->left, r);
+        r.push_back(root->val);
+        dfs(root->right, r);
+    }
+    /*
+    Inorder Traversal Recursive
+    Time Complexity: O(n)
+    Space Complexity: O(h) where h is the height of the tree
+    */
+    vector<int> inOrderTraversalRecursive(TreeNode* root) {
+        vector<int> res;
+        dfs(root, res);
+        return res;
     }
 };
 
@@ -56,6 +75,12 @@ int main() {
     root->right->right = new TreeNode(7);
 
     vector<int> result = root->inOrderTraversalIterative(root);
+    for (int i : result) {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    result = root->inOrderTraversalRecursive(root);
     for (int i : result) {
         cout << i << " ";
     }

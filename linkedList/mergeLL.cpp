@@ -27,21 +27,21 @@ class Solution {
         if (l2 == NULL) return l1;
 
         ListNode* dummy = new ListNode();
-        ListNode* head = dummy;
+        ListNode* curr = dummy;
 
         while (l1 && l2) {
             if (l1->val < l2->val) {
-                dummy->next = l1;
+                curr->next = l1;
                 l1 = l1->next;
             } else {
-                dummy->next = l2;
+                curr->next = l2;
                 l2 = l2->next;
             }
-            dummy = dummy->next;
+            curr = curr->next;
         }
-        if (l1 != NULL) dummy->next = l1;
-        if (l2 != NULL) dummy->next = l2;
-        return head->next;
+        if (l1 != NULL) curr->next = l1;
+        if (l2 != NULL) curr->next = l2;
+        return dummy->next;
     }
 };
 

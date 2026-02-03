@@ -39,8 +39,8 @@ class Solution {
    public:
     /*
      Recursive approach
-      Time Complexity: O(N)
-      Space Complexity: O(H) where H is the height of the tree
+     Time Complexity: O(N)
+     Space Complexity: O(H) where H is the height of the tree
      */
     bool isSameTree(TreeNode* p, TreeNode* q) {
         if (p == nullptr && q == nullptr) {
@@ -56,8 +56,8 @@ class Solution {
     }
     /*
      Iterative approach using DFS
-      Time Complexity: O(N)
-      Space Complexity: O(H) where H is the height of the tree
+     Time Complexity: O(N)
+     Space Complexity: O(H) where H is the height of the tree
      */
     bool isSameTreeDFS(TreeNode* p, TreeNode* q) {
         stack<TreeNode*> stackP;
@@ -91,8 +91,8 @@ class Solution {
     }
     /*
      Iterative approach using BFS
-      Time Complexity: O(N)
-      Space Complexity: O(W) where W is the maximum width of the tree
+     Time Complexity: O(N)
+     Space Complexity: O(W) where W is the maximum width of the tree
      */
     bool isSameTreeBFS(TreeNode* p, TreeNode* q) {
         queue<TreeNode*> queueP;

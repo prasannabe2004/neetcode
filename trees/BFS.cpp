@@ -2,17 +2,6 @@
 
 using namespace std;
 
-/*
-Tree traversal is a process of visiting each node in a tree data structure
-exactly once. There are three ways to traverse a tree:
-1. Inorder Traversal
-2. Preorder Traversal
-3. Postorder Traversal
-4. Level Order Traversal
-5. Height of a tree
-6. Level Order Traversal using queue
-7. Level Order Traversal using recursion
-*/
 class TreeNode {
    public:
     int val;
@@ -23,30 +12,6 @@ class TreeNode {
     TreeNode(int x, TreeNode* left, TreeNode* right)
         : val(x), left(left), right(right) {}
 
-    void inOrderTraversal(TreeNode* root) {
-        if (root == nullptr) {
-            return;
-        }
-        inOrderTraversal(root->left);
-        cout << root->val << " ";
-        inOrderTraversal(root->right);
-    }
-    void preOrderTraversal(TreeNode* root) {
-        if (root == nullptr) {
-            return;
-        }
-        cout << root->val << " ";
-        preOrderTraversal(root->left);
-        preOrderTraversal(root->right);
-    }
-    void postOrderTraversal(TreeNode* root) {
-        if (root == nullptr) {
-            return;
-        }
-        postOrderTraversal(root->left);
-        postOrderTraversal(root->right);
-        cout << root->val << " ";
-    }
     void printLevel(TreeNode* root, int level) {
         if (root == nullptr) {
             return;
@@ -83,7 +48,7 @@ class TreeNode {
         }
     }
     /*
-    Level Order Traversal
+    Level Order Traversal using Queue
     Time Complexity: O(n)
     Space Complexity: O(n)
     */
@@ -108,19 +73,20 @@ class TreeNode {
 };
 
 int main() {
+    /*
+              1
+            2   3
+           4 5 6 7
+    */
     TreeNode* root = new TreeNode(1, new TreeNode(2), new TreeNode(3));
     root->left->left = new TreeNode(4);
     root->left->right = new TreeNode(5);
     root->right->left = new TreeNode(6);
     root->right->right = new TreeNode(7);
 
-    root->inOrderTraversal(root);
-    cout << endl;
-    root->preOrderTraversal(root);
-    cout << endl;
-    root->postOrderTraversal(root);
-    cout << endl;
-
+    cout << "Level order traversal of the tree is: " << endl;
     root->levelOrderTraversal2(root);
     cout << endl;
+
+    return 0;
 }
