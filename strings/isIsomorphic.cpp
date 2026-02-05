@@ -9,7 +9,9 @@ Given two strings s and t, determine if they are isomorphic.
 
 Two strings are isomorphic if the characters in s can be replaced to get t.
 
-All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character but a character may map to itself.
+All occurrences of a character must be replaced with another character while
+preserving the order of characters. No two characters may map to the same
+character but a character may map to itself.
 
 Example 1:
 
@@ -28,16 +30,15 @@ You may assume both s and t have the same length.
 */
 
 class Solution {
-    unordered_map<char, char> s_map;
-    unordered_map<char, char> t_map;
-
    public:
-   /*
-   Using two hash maps to store the mapping from s to t and t to s
-   Time Complexity: O(n)
-   Space Complexity: O(1) since the size of the charset is fixed
-   */
+    /*
+    Using two hash maps to store the mapping from s to t and t to s
+    Time Complexity: O(n)
+    Space Complexity: O(1) since the size of the charset is fixed
+    */
     bool isIsomorphic(string s, string t) {
+        unordered_map<char, char> s_map;
+        unordered_map<char, char> t_map;
         for (int i = 0; i < s.size(); i++) {
             char c1 = s[i];
             char c2 = t[i];
