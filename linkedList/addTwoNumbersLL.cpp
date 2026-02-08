@@ -85,6 +85,21 @@ class Solution {
 
 int main() {
     Solution solution;
+    /*
+    Given l1 in revered order = 2 4 3
+    Given l2 in reverse order = 5 6 4
+
+    they are already in reverse order
+    so if we calculate as such we result in reverse order
+
+    calculated list = 7 0 8
+
+    actual 342
+    actual 465
+    result 807
+
+    8 0 7
+    */
     ListNode* l1 = new ListNode(2);
     l1->next = new ListNode(4);
     l1->next->next = new ListNode(3);
@@ -93,7 +108,7 @@ int main() {
     l2->next = new ListNode(6);
     l2->next->next = new ListNode(4);
 
-    ListNode* result = solution.addTwoNumbers(l1, l2);
+    ListNode* result = solution.addTwoNumbers1(l1, l2);
     while (result != nullptr) {
         cout << result->val << " ";
         result = result->next;

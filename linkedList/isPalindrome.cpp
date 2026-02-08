@@ -1,18 +1,18 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 /*
-Check given single linked list is a palindrome or not
+Given a singly linked list of size N of integers. The task is to check if the
+given linked list is palindrome or not.
 */
-
-struct Node {
-    int data;
-    Node* next;
-    Node(int x) {
-        data = x;
-        next = NULL;
-    }
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
 class Solution {
@@ -21,10 +21,11 @@ class Solution {
     Time: O(n)
     Space: O(n)
     */
-    bool isPalindrome1(Node* root) {
+    bool isPalindrome1(ListNode* head) {
         vector<int> arr;
+        ListNode* root = head;
         while (root != NULL) {
-            arr.push_back(root->data);
+            arr.push_back(root->val);
             root = root->next;
         }
         int n = arr.size();
@@ -37,10 +38,10 @@ class Solution {
         return true;
     }
 
-    Node* reverse(Node* root) {
-        Node* prev = NULL;
-        Node* curr = root;
-        Node* next = NULL;
+    ListNode* reverse(ListNode* root) {
+        ListNode* prev = NULL;
+        ListNode* curr = root;
+        ListNode* next = NULL;
         while (curr != NULL) {
             next = curr->next;
             curr->next = prev;
@@ -59,17 +60,17 @@ class Solution {
     6. Time complexity: O(n)
     7. Space complexity: O(1)
     */
-    bool isPalindrome(Node* root) {
-        Node* slow = root;
-        Node* fast = root;
+    bool isPalindrome(ListNode* root) {
+        ListNode* slow = root;
+        ListNode* fast = root;
         while (fast != NULL && fast->next != NULL) {
             slow = slow->next;
             fast = fast->next->next;
         }
-        Node* rev = reverse(slow);
-        Node* curr = root;
+        ListNode* rev = reverse(slow);
+        ListNode* curr = root;
         while (rev != NULL) {
-            if (rev->data != curr->data) return false;
+            if (rev->val != curr->val) return false;
             rev = rev->next;
             curr = curr->next;
         }
@@ -79,11 +80,11 @@ class Solution {
 
 int main() {
     Solution s;
-    Node* root = new Node(1);
-    root->next = new Node(2);
-    root->next->next = new Node(3);
-    root->next->next->next = new Node(2);
-    root->next->next->next->next = new Node(1);
+    ListNode* root = new ListNode(1);
+    root->next = new ListNode(2);
+    root->next->next = new ListNode(3);
+    root->next->next->next = new ListNode(2);
+    root->next->next->next->next = new ListNode(1);
     cout << s.isPalindrome(root) << endl;
     return 0;
 }
