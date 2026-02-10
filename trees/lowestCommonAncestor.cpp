@@ -47,11 +47,21 @@ class Solution {
                 return curr;
             }
         }
+        return root;
     }
 };
 
 int main() {
     Solution s;
+    /*
+                    6
+                 /    \
+                2      8
+              /   \.  /. \
+              0.  4   7.  9
+                /.  \
+                3.  5
+    */
     TreeNode* root = new TreeNode(6);
     root->left = new TreeNode(2);
     root->right = new TreeNode(8);
@@ -67,10 +77,11 @@ int main() {
     TreeNode* lca = s.lowestCommonAncestor(root, p, q);
     cout << "LCA of 2 and 8: " << lca->val << endl;
 
-    p = root->left;         // Node with value 2
-    q = root->left->right;  // Node with value 4
+    p = root->left->right->left;   // Node with value 3
+    q = root->left->right->right;  // Node with value 5
+
     lca = s.lowestCommonAncestor(root, p, q);
-    cout << "LCA of 2 and 4: " << lca->val << endl;
+    cout << "LCA of 3 and 5: " << lca->val << endl;
 
     return 0;
 }
