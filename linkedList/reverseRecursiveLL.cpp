@@ -1,3 +1,8 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
 /*
  * Given the head of a singly linked list, reverse the list recursively and
  * return the reversed list.
@@ -8,9 +13,6 @@
  * Input: head = [1,2,3,4,5]
  * Output: [5,4,3,2,1]
  */
-
-#include <iostream>
-using namespace std;
 
 // Definition for singly-linked list.
 struct ListNode {
@@ -23,6 +25,25 @@ struct ListNode {
 
 class Solution {
    public:
+    ListNode* reverseListUsingStack(ListNode* head) {
+        if (head == NULL) return NULL;
+        ListNode* newHead = head;
+        stack<ListNode*> s;
+        while (head) {
+            s.push(head);
+            head = head->next;
+        }
+        newHead = s.top();
+        s.pop();
+        ListNode* h = newHead;
+        while (!s.empty()) {
+            h->next = s.top();
+            s.pop();
+            h = h->next;
+        }
+        h->next = NULL;
+        return newHead;
+    }
     ListNode* reverseList(ListNode* head) {
         if (head == NULL) return NULL;
         ListNode* newHead = head;
@@ -45,7 +66,7 @@ int main() {
     }
     cout << endl;
     Solution s;
-    ListNode* newHead = s.reverseList(head);
+    ListNode* newHead = s.reverseListUsingStack(head);
     while (newHead) {
         cout << newHead->val << " ";
         newHead = newHead->next;
