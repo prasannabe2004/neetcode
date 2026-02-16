@@ -40,11 +40,15 @@ class Solution {
         for (int i = 0; i <= n; i++) {
             first = first->next;
         }
+        cout << "First pointer after moving " << n << " steps: " << first->val
+             << endl;
 
         while (first != nullptr) {
             first = first->next;
             second = second->next;
         }
+        cout << "Second pointer after moving " << n << " steps: " << second->val
+             << endl;
         ListNode* tmp = second->next;
         second->next = second->next->next;
         delete tmp;

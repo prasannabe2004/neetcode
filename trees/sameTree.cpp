@@ -128,6 +128,13 @@ class Solution {
 
 int main() {
     Solution sol;
+    /*
+            1
+          2   3
+
+            1
+          2   3
+    */
 
     TreeNode* p = new TreeNode(1);
     p->left = new TreeNode(2);

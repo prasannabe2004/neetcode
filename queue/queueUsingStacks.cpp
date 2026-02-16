@@ -16,13 +16,7 @@ Input
 [[], [1], [2], [], [], []]
 Output
 [null, null, null, 1, 1, false]
-Explanation
-MyQueue myQueue = new MyQueue();
-myQueue.push(1); // queue is: [1]
-myQueue.push(2); // queue is: [1, 2] (leftmost element is front of the queue)
-myQueue.peek(); // return 1
-myQueue.pop(); // return 1, queue is [2]
-myQueue.empty(); // return false
+
 */
 
 class MyQueue {
@@ -38,13 +32,13 @@ class MyQueue {
     Time Complexity: O(1)
     Space Complexity: O(1)
     */
-    void push(int x) { stack1.push(x); }
+    void enqueue(int x) { stack1.push(x); }
     /*
         Removes the element from in front of queue and returns that element.
         Time Complexity: Amortized O(1)
         Space Complexity: O(1)
     */
-    int pop() {
+    int dequeue() {
         if (stack2.empty()) {
             while (!stack1.empty()) {
                 stack2.push(stack1.top());
@@ -55,38 +49,24 @@ class MyQueue {
         stack2.pop();
         return topElement;
     }
-    /*
-        Returns the element at the front of the queue.
-        Time Complexity: O(1)
-        Space Complexity: O(1)
-    */
-    int peek() {
-        if (stack2.empty()) {
-            while (!stack1.empty()) {
-                stack2.push(stack1.top());
-                stack1.pop();
-            }
-        }
-        return stack2.top();
-    }
 
     bool empty() { return stack1.empty() && stack2.empty(); }
 };
 
 int main() {
     MyQueue* obj = new MyQueue();
-    obj->push(1);
-    obj->push(2);
-    obj->push(3);
+    obj->enqueue(1);
+    obj->enqueue(2);
+    obj->enqueue(3);
 
-    obj->push(4);
-    obj->push(5);
-    obj->push(6);
-    cout << obj->pop() << endl;  // returns 1
-    cout << obj->pop() << endl;  // returns 2
-    cout << obj->pop() << endl;  // returns 3
-    cout << obj->pop() << endl;  // returns 4
-    cout << obj->pop() << endl;  // returns 5
-    cout << obj->pop() << endl;  // returns 6
+    obj->enqueue(4);
+    obj->enqueue(5);
+    obj->enqueue(6);
+    cout << obj->dequeue() << endl;  // returns 1
+    cout << obj->dequeue() << endl;  // returns 2
+    cout << obj->dequeue() << endl;  // returns 3
+    cout << obj->dequeue() << endl;  // returns 4
+    cout << obj->dequeue() << endl;  // returns 5
+    cout << obj->dequeue() << endl;  // returns 6
     return 0;
 }
