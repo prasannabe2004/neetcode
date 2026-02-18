@@ -1,18 +1,14 @@
 #include <stdio.h>
-/*
-Function to find sum
-*/
-int sum(int arr[], int n) {
-    int res = 0;
-    for (int i = 0; i < n; i++) {
-        res += arr[i];
-    }
-    return res;
-}
-
-int main() {
-    int arr[5] = {1, 2, 3, 4, 5};
-    printf("%lu\n", sizeof(arr) / sizeof(arr[0]));
-    printf("%lu\n", sizeof(&arr) / sizeof(arr[0]));
+void f(char**);
+int main()
+{
+    char *argv[] = { "ab", "cd", "ef", "gh", "ij", "kl" };
+    f(argv);
     return 0;
+}
+void f(char **p)
+{
+    char *t;
+    t = (p += sizeof(int))[-1];
+    printf("%s\\n", t);
 }
