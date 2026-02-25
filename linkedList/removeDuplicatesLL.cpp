@@ -27,7 +27,9 @@ class Solution {
         ListNode* current = head;
         while (current) {
             while (current->next && current->val == current->next->val) {
+                ListNode* temp = current->next;
                 current->next = current->next->next;
+                delete temp;
             }
             current = current->next;
         }

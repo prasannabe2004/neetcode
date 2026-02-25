@@ -41,7 +41,8 @@ The number of nodes in the list is in the range [0, 10^4].
 class Solution {
    public:
     ListNode* removeElements(ListNode* head, int val) {
-        ListNode dummy(0, head);
+        ListNode dummy(0);
+        dummy.next = head;
         ListNode *prev = &dummy, *curr = head;
 
         while (curr) {

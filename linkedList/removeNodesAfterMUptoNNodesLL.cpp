@@ -38,7 +38,9 @@ class Solution {
                 newM--;
             }
             while (curr && newN > 0) {
+                ListNode* temp = curr;
                 curr = curr->next;
+                delete temp;
                 newN--;
             }
             last->next = curr;

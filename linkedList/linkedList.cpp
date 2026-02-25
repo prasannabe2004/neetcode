@@ -34,7 +34,10 @@ class LinkedList {
         return head;
     }
     ListNode* deletedNode(int val) {
-        ListNode* dummy = new ListNode(0, head);
+        if (head == nullptr) return head;
+
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
 
         ListNode* prev = dummy;
         ListNode* curr = head;

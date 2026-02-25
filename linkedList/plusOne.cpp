@@ -34,10 +34,9 @@ class Solution {
     Space Complexity: O(1)
     */
     ListNode* plusOne(ListNode* head) {
-        ListNode* notNine = nullptr;
         ListNode* dummy = new ListNode(0);
         dummy->next = head;
-
+        ListNode* notNine = dummy;
         ListNode* curr = dummy;
 
         while (curr) {
@@ -48,14 +47,10 @@ class Solution {
         }
 
         notNine->val = notNine->val + 1;
-        if (notNine->next) {
-            curr = notNine->next;
-            while (curr) {
-                curr->val = 0;
-                curr = curr->next;
-            }
+        for (ListNode* curr = notNine->next; curr != nullptr;
+             curr = curr->next) {
+            curr->val = 0;
         }
-        delete curr;
         if (dummy->val == 0) {
             ListNode* newHead = dummy->next;
             delete dummy;
@@ -67,7 +62,7 @@ class Solution {
 
 int main() {
     Solution s;
-    ListNode* head = new ListNode(1);
+    ListNode* head = new ListNode(9);
     head->next = new ListNode(9);
     head->next->next = new ListNode(9);
     head->next->next->next = new ListNode(9);

@@ -50,6 +50,14 @@ class Solution {
         }
         return slow;  // Entry point of the loop
     }
+    void printList(ListNode* head) {
+        ListNode* curr = head;
+        while (curr) {
+            cout << curr->val << " ";
+            curr = curr->next;
+        }
+        cout << endl;
+    }
     bool fixLoop(ListNode* head) {
         ListNode* slow = head;
         ListNode* fast = head;
@@ -70,6 +78,7 @@ class Solution {
                 slow = slow->next;
                 fast = fast->next;
             }
+            cout << "Looping at node with value: " << fast->val << endl;
             fast->next = nullptr;
             return true;
         } else {
@@ -107,6 +116,8 @@ int main() {
          << endl;
     // Note: In a real scenario, we should free the allocated memory.
     // However, since there's a loop, we would need to handle that carefully.
+
+    solution.printList(head);
 
     return 0;
 }
