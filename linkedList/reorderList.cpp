@@ -3,6 +3,24 @@
 
 using namespace std;
 
+/*
+Reorder List
+Given the head of a singly linked list, reorder the list to be in the following
+form: L0 → Ln → L1 → Ln-1 → L2 → Ln-2 → ... The reordering should be done
+in-place without altering the nodes' values.
+
+Example 1: Input: head = [1,2,3,4]
+Output: [1,4,2,3]
+
+Example 2:
+Input: head = [1,2,3,4,5]
+Output: [1,5,2,4,3]
+
+Constraints:
+The number of nodes in the list is in the range [1, 5 * 104].
+1 <= Node.val <= 1000
+*/
+
 struct ListNode {
     int val;
     ListNode* next;

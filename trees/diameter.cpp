@@ -43,27 +43,26 @@ class TreeNode {
         return res;
     }
 
-    int diameterRecur(TreeNode* root, int &maxDiameter) {
-    if (!root)
-        return 0;
+    int diameterRecur(TreeNode* root, int& maxDiameter) {
+        if (!root) return 0;
 
-    // Find the height of left and right subtree
-    int lHeight = diameterRecur(root->left, maxDiameter);
-    int rHeight = diameterRecur(root->right, maxDiameter);
+        // Find the height of left and right subtree
+        int lHeight = diameterRecur(root->left, maxDiameter);
+        int rHeight = diameterRecur(root->right, maxDiameter);
 
-    // Update the global max diameter if this node gives a longer path
-    maxDiameter = max(maxDiameter, lHeight + rHeight);
+        // Update the global max diameter if this node gives a longer path
+        maxDiameter = max(maxDiameter, lHeight + rHeight);
 
-    // Return height of current subtree
-    return 1 + max(lHeight, rHeight);
-}
+        // Return height of current subtree
+        return 1 + max(lHeight, rHeight);
+    }
 
-// Function to get diameter of a binary tree
-int diameter(TreeNode* root) {
-    int maxDiameter = 0; 
-    diameterRecur(root, maxDiameter);
-    return maxDiameter;
-}
+    // Function to get diameter of a binary tree
+    int diameter(TreeNode* root) {
+        int maxDiameter = 0;
+        diameterRecur(root, maxDiameter);
+        return maxDiameter;
+    }
 };
 
 int main() {
