@@ -8,6 +8,14 @@ Example:
 Input: nums = [4,5,6,7,0,1,2],
 Output: 4
 Target = 0
+        m       
+4,5,6,7,8,9,0,1,2
+
+Input: nums = [4,5,6,7,0,1,2],
+Output: -1
+Target = 3
+
+
 */
 
 class Solution {
