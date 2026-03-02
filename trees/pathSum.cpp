@@ -2,8 +2,9 @@
 using namespace std;
 
 /*
-Given the root of a binary tree and an integer targetSum, return true if the tree has a root-to-leaf path such that adding up all the values along the path equals targetSum.   
-A leaf is a node with no children.
+Given the root of a binary tree and an integer targetSum, return true if the
+tree has a root-to-leaf path such that adding up all the values along the path
+equals targetSum. A leaf is a node with no children.
 
 Example 1:
 Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
@@ -24,20 +25,20 @@ struct TreeNode {
 
 class Solution {
    public:
-   /*
-   Time Complexity: O(N)
-   Space Complexity: O(H) where H is the height of the tree
-   if we don't consider recursive stack space then SC: O(1)
-   */
-    bool dfs(TreeNode* root, int sum, int currentSum) {
+    /*
+    Time Complexity: O(N)
+    Space Complexity: O(H) where H is the height of the tree
+    if we don't consider recursive stack space then SC: O(1)
+    */
+    bool dfs(TreeNode* root, int targetSum, int currentSum) {
         if (root == nullptr) return false;
         currentSum += root->val;
 
         if (root->left == nullptr && root->right == nullptr) {
-            return currentSum == sum;
+            return currentSum == targetSum;
         }
-        return dfs(root->left, sum, currentSum) ||
-               dfs(root->right, sum, currentSum);
+        return dfs(root->left, targetSum, currentSum) ||
+               dfs(root->right, targetSum, currentSum);
     }
     int hasPathSum(TreeNode* root, int targetSum) {
         return dfs(root, targetSum, 0);
