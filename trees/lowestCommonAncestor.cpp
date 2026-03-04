@@ -77,8 +77,8 @@ int main() {
     TreeNode* lca = s.lowestCommonAncestor(root, p, q);
     cout << "LCA of 2 and 8: " << lca->val << endl;
 
-    p = root->left->right->left;   // Node with value 3
-    q = root->left->right->right;  // Node with value 5
+    p = root->left->right->left;  // Node with value 3
+    q = root->right->left;        // Node with value 7
 
     lca = s.lowestCommonAncestor(root, p, q);
     cout << "LCA of 3 and 5: " << lca->val << endl;
