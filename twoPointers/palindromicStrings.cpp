@@ -26,12 +26,8 @@ class Solution {
     int countSubstrings(string s) {
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
-            int left = i;
-            int right = i;
-            count += expand(s, left, right);
-            left = i;
-            right = i + 1;
-            count += expand(s, left, right);
+            count += expand(s, i, i);
+            count += expand(s, i, i + 1);
         }
         return count;
     }

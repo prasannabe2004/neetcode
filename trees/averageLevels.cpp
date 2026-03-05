@@ -49,7 +49,6 @@ class TreeNode {
 
         q.push(root);
         while (!q.empty()) {
-            vector<int> level;
             int size = q.size();
             double avg = 0;
             for (int i = 0; i < size; i++) {

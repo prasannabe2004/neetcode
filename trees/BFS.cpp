@@ -59,16 +59,25 @@ class TreeNode {
         }
         queue<TreeNode*> q;
         q.push(root);
+        int level = 0;
+
         while (!q.empty()) {
-            TreeNode* node = q.front();
-            cout << node->val << " ";
-            q.pop();
-            if (node->left != nullptr) {
-                q.push(node->left);
+            size_t size = q.size();
+            cout << "Level " << level << endl;
+
+            for (int i = 0; i < size; i++) {
+                TreeNode* node = q.front();
+                cout << node->val << " ";
+                q.pop();
+                if (node->left != nullptr) {
+                    q.push(node->left);
+                }
+                if (node->right != nullptr) {
+                    q.push(node->right);
+                }
             }
-            if (node->right != nullptr) {
-                q.push(node->right);
-            }
+            cout << endl;
+            level++;
         }
     }
 };
